@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+*.db
+*.log
+*.user
+*.suo
+*.swp
+*.tmp
+wwwroot/lib/
+node_modules/
+appsettings.Development.json
+appsettings.Local.json
