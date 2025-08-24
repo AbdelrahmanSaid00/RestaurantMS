@@ -40,5 +40,19 @@ ER Diagram:
 ---
 
 ## Project Structure
-> *This section will be updated once the project structure is finalized.*
 
+``` 
+RestaurantMS/
+├── Areas/
+│   └── Identity/       # Identity (Authentication & Authorization) scaffolding
+│       ├── Pages/      # Razor Pages for login, register, manage account, etc.
+│       └── Data/       # IdentityDbContext & migrations related to Identity
+├── Controllers/        # MVC Controllers (Product, Category, Ingredient, Order, etc.)
+├── Models/             # Entity Models (Product, Category, Ingredient, Order, ApplicationUser)
+├── ViewModel/          # ViewModels like OrderVM for passing combined data to Views
+├── Data/               # DbContext, Repositories, and EF Core Migrations
+├── Views/              # Razor Views for each controller
+├── wwwroot/            # Static files (CSS, JS, images, ER Diagram, etc.)
+├── Program.cs          # Application entry point & service configuration
+└── appsettings.json    # Database connection strings & app configuration
+```
