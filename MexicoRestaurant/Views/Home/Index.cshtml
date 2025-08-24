@@ -1,8 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Mexico Restaurant";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="bg-dark text-white text-center d-flex align-items-center justify-content-center"
+     style="background: url('/Images/logoOfTheHomePage.jpg') no-repeat center center;
+            background-size: cover;
+            height: 100vh;">
+
+    <div class="p-5 rounded" style="background-color: rgba(0,0,0,0.6);">
+        <h1 class="display-3 fw-bold">Welcome to Mexico Restaurant 🌮</h1>
+        <p class="lead mt-3">Experience authentic Mexican flavors!</p>
+        <a asp-controller="Product" asp-action="Index" class="btn btn-warning btn-lg mt-4">
+            Explore Our Menu
+        </a>
+    </div>
 </div>

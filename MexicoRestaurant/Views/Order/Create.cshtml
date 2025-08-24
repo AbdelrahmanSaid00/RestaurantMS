@@ -1,0 +1,44 @@
+﻿@using MexicoRestaurant.ViewModel
+@model OrderVM
+
+@{
+    ViewBag.Title = "Create Order";
+}
+<h1 class="mb-4">Create Order</h1>
+
+<div class="row g-4">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-md-4 col-sm-6">
+            <form asp-action="AddItem" method="post">
+                <div class="card shadow-sm h-100">
+                    <img src="@Url.Content("~/Images/" + product?.ImageUrl)"
+                         class="card-img-top fixed-image-height"
+                         alt="@product.Name" />
+
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text text-muted">@product.Price.ToString("C")</p>
+
+                        <input type="hidden" name="ProductId" value="@product.ProductId" />
+
+                        <div class="mb-3">
+                            <label for="qty-@product.ProductId" class="form-label">Quantity</label>
+                            <input type="number" name="proQty" id="qty-@product.ProductId"
+                                   class="form-control" min="1" value="1" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+
+<style>
+    .fixed-image-height {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>

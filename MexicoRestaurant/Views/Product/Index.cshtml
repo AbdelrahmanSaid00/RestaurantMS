@@ -15,14 +15,16 @@
 }
 <h1>@ViewData["Title"]</h1>
 <br />
-<a asp-action="AddEdit" asp-controller="Product" class="btn btn-primary">Create New Item</a> <br />
-
+@if (User.IsInRole("Admin"))
+{
+    <a asp-action="AddEdit" asp-controller="Product" class="btn btn-primary">Create New Item</a> <br />
+}
 <br />
 <div class="row">
 
     @foreach(Product product in Model)
     {
-    <div class="col-md-4">
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
         <form asp-action="Delete" asp-controller="Product" method="post">
             <input type="hidden" name="id" value="@product.ProductId" />
             <div class="card">
@@ -32,12 +34,15 @@
                        <p class="card-text">@product.Description</p>
                         <p class="card-text">@product.Price.ToString("C")</p>
                         <p class="card-text">Quantity In Stock : @product.Stock</p>
+                        @if (User.IsInRole("Admin"))
+                        {
                         <a class="btn btn-info" asp-controller="Product" asp-action="AddEdit" asp-route-id="@product.ProductId">
                             <i class="bi bi-pencil-square">Edit </i>
                         </a>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#@GetDeleteModelId(product)">
                             <i class="bi bi-trash">Delete</i>
                         </button>
+                        }
                         <div class="modal fade" id="@GetModelId(product)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">

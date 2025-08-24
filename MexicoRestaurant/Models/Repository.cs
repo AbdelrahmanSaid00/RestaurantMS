@@ -60,5 +60,25 @@ namespace MexicoRestaurant.Models
             _context.Update(entity);
             await _context.SaveChangesAsync();
         }
+        public async Task<IEnumerable<T>> GetAllByIdAsync<TKey> (TKey id , string propertyName , QueryOptions<T>options)
+        {
+            IQueryable<T> query = _dbSet;
+            if (options.HasWhere)
+            {
+                query = query.Where(options.Where);
+            }
+            if (options.HasOrderBy)
+            {
+                query = query.OrderBy(options.OrderBy);
+            }
+            foreach(string include in options.GetIncludes())
+            {
+                query = query.Include(include);
+            }
+            
+            query = query.Where(e => EF.Property<TKey>(e, propertyName).Equals(id));
+            
+            return await query.ToListAsync();
+        }
     }
 }
